@@ -1,10 +1,10 @@
-# 環境準備
+## Prepare environment.
 
-## 処理系準備
+### Compiler
+
+Install `Clozure CL` referring below:
 
 http://modern-cl.blogspot.jp/
-
-を参考に、Clozure CLをインストール
 
 ```bash
 $ cd ~/opt
@@ -14,7 +14,7 @@ $ chmod +x ~/bin/ccl
 $ CCL_DEFAULT_DECTORY=~/opt/ccl ccl
 ```
 
-## Quicklisp導入
+### Quicklisp
 
 ```bash
 $ curl -O http://beta.quicklisp.org/quicklisp.lisp
@@ -27,7 +27,7 @@ $ ccl
 ? (ql:add-to-init-file)
 ```
 
-## Slimeの導入
+### Slime
 
 ```bash
 $ cd ~/opt
@@ -36,24 +36,19 @@ $ tar zxvf slime-current.tgz
 $ ln -s ~/opt/slime-* ~/.emacs.d/slime
 ```
 
-emacsの設定ファイルに以下を追記
+add following to emacss' configuration file.
 
 ```lisp
-;; Clozure CLをデフォルトのCommon Lisp処理系に設定
 (setq inferior-lisp-program "ccl")
-;; ~/.emacs.d/slimeをload-pathに追加
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/slime"))
-;; SLIMEのロード
 (require 'slime)
 (slime-setup '(slime-repl slime-fancy slime-banner))
 ```
 
-## ためしに足し算のライブラリを作成
-
 ```bash
-# ローカルリポジトリの保存先を作成
+# create directory for local repository
 $ mkdir -p ~/paip/libraries
-# ローカルリポジトリの保存先をパスに登録
+# register the directory for local repository
 $ mkdir -p ~/.config/common-lisp/source-registry.conf.d
 $ echo "(:tree (:home \"paip/libraries\"))" >> ~/.config/common-lisp/source-registry.conf.d/01-add-local-lisp.conf
 ```
@@ -67,9 +62,9 @@ CL-USER> (cl-project:make-project #p"~/paip/libraries/plus/"
   :depends-on '(:cl-annot))
 ```
 
-[~/paip/libraries/plus/src/plus.lisp](./libraries/plus/src/plus.lisp)を編集
+Edit [~/paip/libraries/plus/src/plus.lisp](./libraries/plus/src/plus.lisp).
 
-[テスト](./libraries/plus/t/plus.lisp)を記述
+Edit [テスト](./libraries/plus/t/plus.lisp).
 
 ```lisp
 CL-USER> (ql:quickload :plus-test)
