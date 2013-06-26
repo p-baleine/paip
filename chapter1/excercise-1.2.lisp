@@ -1,4 +1,6 @@
-;; Write a function to exponentiate, or raise a number to an integer power. For example: (power 3 2) = 3^2 = 9
+;; Write a function to exponentiate, or raise
+;; a number to an integer power.
+;; For example: (power 3 2) = 3^2 = 9
 
 (use-package :cl-test-more)
 
