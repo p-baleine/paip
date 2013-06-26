@@ -2,9 +2,7 @@
 ;; a number to an integer power.
 ;; For example: (power 3 2) = 3^2 = 9
 
-(use-package :cl-test-more)
-
-(plan nil)
+(ql:quickload :paip-excercise)
 
 (defun power (base n)
   "Exponentiate, or raise a number to an integer power.
@@ -13,7 +11,6 @@ For example: (power 3 2) = 3^2 = 9"
       base
       (* base (power base (- n 1)))))
 
-(is (power 3 1) 3)
-(is (power 3 2) 9)
-
-(finalize)
+(paip-excercise:test
+ (cl-test-more:is (power 3 1) 3)
+ (cl-test-more:is (power 3 2) 9))

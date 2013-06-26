@@ -6,16 +6,11 @@
 ;; Example:
 ;; (dot-product '(10 20) '(3 4)) = 10 * 3 + 20 * 4 = 110
 
-(use-package :cl-test-more)
-
-(plan nil)
-
 (defun dot-product (a b)
   "Return the dot product of two sequences
 of numbers, represenred as lists."
   (apply #'+
 	 (mapcar #'(lambda (x y) (* x y)) a b)))
 
-(is (dot-product '(10 20) '(3 4)) 110)
-
-(finalize)
+(paip-excercise:test
+ (cl-test-more:is (dot-product '(10 20) '(3 4)) 110))

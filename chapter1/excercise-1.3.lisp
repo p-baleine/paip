@@ -5,9 +5,7 @@
 ;; in this: should (a nil c) counts as three atoms,
 ;; or as two, becaouse it is equivalent to (a () c)?
 
-(use-package :cl-test-more)
-
-(plan nil)
+(ql:quickload :paip-excercise)
 
 (defun count-atoms (exp)
   "Counts the number of atoms in an expression."
@@ -18,8 +16,9 @@
      (+ (count-atoms (car exp))
 	(count-atoms (cdr exp))))))
 
-(is (count-atoms '(a (b) c)) 3)
-(is (count-atoms '(a () c)) 2)
+(paip-excercise:test
+ (cl-test-more:is (count-atoms '(a (b) c)) 3)
+ (cl-test-more:is (count-atoms '(a () c)) 2))
 
 (defun count-atoms2 (exp)
   "Counts the number of atoms in an expression."
@@ -30,7 +29,6 @@
      (+ (count-atoms2 (car exp))
 	(count-atoms2 (cdr exp))))))
 
-(is (count-atoms2 '(a (b) c)) 3)
-(is (count-atoms2 '(a () c)) 3)
-
-(finalize)
+(paip-excercise:test
+ (cl-test-more:is (count-atoms2 '(a (b) c)) 3)
+ (cl-test-more:is (count-atoms2 '(a () c)) 3))

@@ -3,10 +3,6 @@
 ;; expression.
 ;; Example: (count-anywhere 'a '(a ((a) b) a)) => 3.
 
-(use-package :cl-test-more)
-
-(plan nil)
-
 (defun count-anywhere (target another)
   "Counts the number of times
 an expression occurs anywhere whithin anothoer
@@ -20,6 +16,5 @@ Example: (count-anywhere 'a '(a ((a) b) a)) => 3."
      (+ (count-anywhere target (car another))
 	(count-anywhere target (cdr another))))))
 
-(is (count-anywhere 'a '(a ((a) b) a)) 3)
-
-(finalize)
+(paip-excercise:test
+ (cl-test-more:is (count-anywhere 'a '(a ((a) b) a)) 3))
